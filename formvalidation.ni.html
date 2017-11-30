@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1"/>
+<title>Call functions example</title>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+function validateNI()
+{
+  var nationalNumber = document.getElementById('nationalNumber').value;
+
+  if (nationalNumber.length == 0)
+  {
+  	return "Error nationalNumber is length zero\n";
+  }
+
+  pattern = /^[A-Z]{2}[0-9]{6}[A-Z]$/;
+  if(!(pattern.test(nationalNumber)))
+  {
+  return "Error nationalNumber is not valid : must be like AB123456C\n";
+  }
+
+  else
+
+  {
+  	return "";
+  }
+}
+
+function validateAge()
+{
+  var Age= document.getElementById('Age').value;
+  if (Age.length == 0)
+  {
+  	return "Error Age is length zero\n";
+  }
+  
+  if ((isNaN(Age)))
+  {
+  	return "Error Age is not a numerical value\n";
+	
+  }
+  
+   if (Age < 16)
+  {
+  	return "You are too young to have one of these!\n";
+  }
+  else
+  {
+  	return "";
+  }
+}
+
+
+function demovalidate()
+{
+  var result = validateNI() + validateAge();
+ 
+  if ( result == "" )
+  {
+  	alert("returns true");
+    console.log("validate is true");
+  	return true;
+  }
+  else
+  {
+    alert(result);   // should be nothing if fields validate
+    console.log("validate is false");
+    return false;
+  }
+
+}
+/* ]]> */
+</script>
+
+</head>
+<body>
+
+<h1>Please enter your employment details below : </h1>
+
+<form name="demo" onsubmit="return demovalidate();" method="post" action="http://students.open.ac.uk/mct/tt284/reflect/reflect.php">
+nationalNumber (Two letters, six numbers, 1 letter - upper case):
+<input type="text" name="nationalNumber" id="nationalNumber" size="10" maxlength="10"/>
+<p/>
+Age (Must be greater or equal to 16):
+<input type="text" name="Age" id="Age" size="5" maxlength="10"/>
+<p/>
+<input type="submit" value="Submit form" />
+</form>
+
+</body>
+</html>
+
